@@ -11,7 +11,7 @@ An iPhone that shows the latest news, news by different categories and allow use
   * [Clone](https://github.com/sagarchoudhary96/Buzz-News.git) or [Download](https://github.com/sagarchoudhary96/Buzz-News/archive/master.zip) this repository.
   * `cd` into the project directory and run `pod install`.
   * Open the `Buzz News.xcworkspace` to open the project in Xcode.
-  * register on [Guardian](https://open-platform.theguardian.com/) to get your Guardian [API Key](https://open-platform.theguardian.com/access/).
+  * Register on [Guardian](https://open-platform.theguardian.com/) to get your Guardian [API Key](https://open-platform.theguardian.com/access/).
   * Replace `GUARDIAN_API_KEY_HERE` text in `GuardianParamValues` in `Utils/Constants.swift` file by your api key.
   * Login to [Firebase](https://firebase.google.com/) and create a new [iOS app](https://firebase.google.com/docs/ios/setup) and place the downloaded `GoogleService-Info.plist` file in the Project Directory.
    
