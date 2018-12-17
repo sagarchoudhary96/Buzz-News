@@ -7,26 +7,20 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseDatabase
 
 // MARK: Categories List Table Cell
 class categoriesListCell: UITableViewCell {
     
     var category: String!
     
-    // MARK: Firebase Database reference
-    var ref: DatabaseReference!
-    
     var link: CategoriesTableViewController!
-    
+    var userId: String!
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        ref = Database.database().reference()
     }
     
     // MARK: fetch each categories news
@@ -85,7 +79,7 @@ class categoriesListCell: UITableViewCell {
                         Constants.GuardianResponseKeys.Thumbnail: news.thumbnailUrl ?? ""]
             
             // add to the firebase database
-            ref.child("news").childByAutoId().setValue(data)
+            FirebaseClient.shared.addToFirebase(userId: userId, data: data)
         }
         // reload collection view
         collectionView.reloadItems(at: [TappedCellIndex!])

@@ -15,10 +15,12 @@ class FavoriteNewsTableViewController: UITableViewController {
     // MARK: Properties
     var ref: DatabaseReference!
     var newsList: [DataSnapshot]! = []
+    var userID: String!
     fileprivate var _refHandle: DatabaseHandle!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userID = (UserDefaults.standard.value(forKey: "userId") as! String)
         configureDatabase()
     }
     
@@ -27,8 +29,7 @@ class FavoriteNewsTableViewController: UITableViewController {
         
         // get database reference
         ref = Database.database().reference()
-        
-        _refHandle = ref.child("news").observe(.childAdded) {
+        _refHandle = ref.child("news/\(userID!)").observe(.childAdded) {
             (snapshot: DataSnapshot) in
             self.newsList.append(snapshot)
             self.tableView.insertRows(at: [IndexPath(row: (self.newsList.count-1), section: 0)], with: .fade)
@@ -82,9 +83,17 @@ class FavoriteNewsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             let newsSnapshot: DataSnapshot = newsList[indexPath.row]
-            ref.child("news").child(newsSnapshot.key).removeValue()
+            FirebaseClient.shared.removeFromFirebase(userId: userID!, key: newsSnapshot.key)
             self.newsList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let newsSnapshot: DataSnapshot = newsList[indexPath.row]
+        let news = newsSnapshot.value as! [String: String]
+        let url = news[Constants.GuardianResponseKeys.WebUrl]
+        openUrl(urlString: url!)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

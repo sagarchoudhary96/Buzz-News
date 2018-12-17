@@ -26,6 +26,7 @@
 		1BB7841821BE3FDE00A4E62B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BB7841621BE3FDE00A4E62B /* Main.storyboard */; };
 		1BB7841A21BE3FDF00A4E62B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BB7841921BE3FDF00A4E62B /* Assets.xcassets */; };
 		1BB7841D21BE3FDF00A4E62B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BB7841B21BE3FDF00A4E62B /* LaunchScreen.storyboard */; };
+		1BF9A16F21C7803500B3AB91 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF9A16E21C7803500B3AB91 /* FirebaseClient.swift */; };
 		6AE2AF401809BE40825F4A45 /* Pods_Buzz_News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDF710C8E8ED3E71F444E20 /* Pods_Buzz_News.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		1BB7841921BE3FDF00A4E62B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1BB7841C21BE3FDF00A4E62B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1BB7841E21BE3FDF00A4E62B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1BF9A16E21C7803500B3AB91 /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		7EDF710C8E8ED3E71F444E20 /* Pods_Buzz_News.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzz_News.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80F0EC3D9BFE038D74DC9A0D /* Pods-Buzz News.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzz News.release.xcconfig"; path = "Pods/Target Support Files/Pods-Buzz News/Pods-Buzz News.release.xcconfig"; sourceTree = "<group>"; };
 		87923580F06163BB5961BE45 /* Pods-Buzz News.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzz News.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Buzz News/Pods-Buzz News.debug.xcconfig"; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				1B5A608721BEDF32005B40DE /* Extensions.swift */,
 				1B5A608921BF8CAA005B40DE /* Constants.swift */,
 				1B5A608B21BF96D2005B40DE /* APIClient.swift */,
+				1BF9A16E21C7803500B3AB91 /* FirebaseClient.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				1B5A609621C024F0005B40DE /* FavoriteNewsTableViewController.swift in Sources */,
 				1B5A608821BEDF32005B40DE /* Extensions.swift in Sources */,
 				1B5A608C21BF96D2005B40DE /* APIClient.swift in Sources */,
+				1BF9A16F21C7803500B3AB91 /* FirebaseClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

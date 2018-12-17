@@ -32,7 +32,6 @@ class APIClient {
             let queryItem = URLQueryItem(name: key, value: "\(value)")
             urlComponents.queryItems!.append(queryItem)
         }
-        print("\(urlComponents.url!)")
         return urlComponents.url!
     }
     

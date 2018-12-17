@@ -7,16 +7,14 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseDatabase
 
 class LatestNewsTableViewController: UITableViewController {
     
-    var ref: DatabaseReference!
+    var userID: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = Database.database().reference()
+        userID = (UserDefaults.standard.value(forKey: "userId") as! String)
     }
 
     // MARK: - Table view data source
@@ -74,7 +72,7 @@ class LatestNewsTableViewController: UITableViewController {
                         Constants.GuardianResponseKeys.Thumbnail: news.thumbnailUrl ?? ""]
             
             // add to firebase database
-            ref.child("news").childByAutoId().setValue(data)
+            FirebaseClient.shared.addToFirebase(userId: userID!, data: data)
         }
         
         // relaod the table view

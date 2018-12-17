@@ -42,6 +42,7 @@ class LoginViewController: UIViewController {
             if let activeUser = user {
                 if self.user != activeUser {
                     self.user = activeUser
+                    UserDefaults.standard.set(user?.uid, forKey: "userId")
                     self.performSegue(withIdentifier: "mainScreen", sender: self)
                 }
             }

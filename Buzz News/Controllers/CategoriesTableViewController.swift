@@ -12,9 +12,10 @@ class CategoriesTableViewController: UITableViewController {
     
     // MARK: Categories section
     var categories = ["Sport", "Media", "Politics", "Travel"]
-    
+    var userID: String!
     override func viewDidLoad() {
         super.viewDidLoad()
+        userID = (UserDefaults.standard.value(forKey: "userId") as! String)
     }
 
     // MARK: - Table view data source
@@ -35,6 +36,7 @@ class CategoriesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoriesListCell") as! categoriesListCell
         cell.category = categories[indexPath.section]
         cell.link = self
+        cell.userId = userID
         cell.fetchSectionNews()
         return cell
     }
