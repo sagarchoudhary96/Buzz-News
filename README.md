@@ -19,13 +19,17 @@ An iPhone that shows the latest news, news by different categories and allow use
   
   * Under the Firebase **Database** section change rules to the below rules:
   
-  ```
-    {
-      "rules": {
-        ".read": "auth != null",
-        ".write": "auth != null"
+ ```
+  {
+    "rules": {
+      "news": {
+        "$user_id": {
+          ".read": "$user_id === auth.uid",
+          ".write": "$user_id === auth.uid"
+        }
       }
     }
+  }
   ```
 
   * Run the project using the `play` button on top left corner of xcode as you can see below in the screenshot.
