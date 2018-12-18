@@ -16,6 +16,10 @@ class LatestNewsTableViewController: UITableViewController {
         super.viewDidLoad()
         userID = (UserDefaults.standard.value(forKey: "userId") as! String)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,7 +48,11 @@ class LatestNewsTableViewController: UITableViewController {
                 }
             }
         }
-        cell.accessoryView?.tintColor = news.isFavorite ? self.view.tintColor : UIColor.lightGray
+
+        NewsCollection.shared.latestNews[(indexPath as NSIndexPath).row].isFavorite =  NewsCollection.shared.favoriteList.contains(news.webUrl) ? true : false
+        
+        cell.accessoryView?.tintColor = NewsCollection.shared.favoriteList.contains(news.webUrl) ? self.view.tintColor : UIColor.lightGray
+        
         return cell
     }
     
@@ -67,12 +75,24 @@ class LatestNewsTableViewController: UITableViewController {
         
         // mark favorite
         if (!news.isFavorite) {
+            print("favorite")
             let data = [Constants.GuardianResponseKeys.Title: news.title as String,
                         Constants.GuardianResponseKeys.WebUrl: news.webUrl as String,
                         Constants.GuardianResponseKeys.Thumbnail: news.thumbnailUrl ?? ""]
             
+            // add to in-memory list
+            NewsCollection.shared.favoriteList.append(news.webUrl)
+            
             // add to firebase database
             FirebaseClient.shared.addToFirebase(userId: userID!, data: data)
+        } else {
+           // add to in-memory list
+            print("here")
+            if NewsCollection.shared.favoriteList.contains(news.webUrl) {
+                let index = NewsCollection.shared.favoriteList.firstIndex(of: news.webUrl)
+                NewsCollection.shared.favoriteList.remove(at: index!)
+            }
+            
         }
         
         // relaod the table view

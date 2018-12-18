@@ -17,6 +17,10 @@ class CategoriesTableViewController: UITableViewController {
         super.viewDidLoad()
         userID = (UserDefaults.standard.value(forKey: "userId") as! String)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
 
     // MARK: - Table view data source
 

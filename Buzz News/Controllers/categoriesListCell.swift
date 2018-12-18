@@ -78,9 +78,20 @@ class categoriesListCell: UITableViewCell {
                         Constants.GuardianResponseKeys.WebUrl: news.webUrl as String,
                         Constants.GuardianResponseKeys.Thumbnail: news.thumbnailUrl ?? ""]
             
+                // add to in-memory list
+            NewsCollection.shared.favoriteList.append(news.webUrl)
+            
             // add to the firebase database
             FirebaseClient.shared.addToFirebase(userId: userId, data: data)
+        } else {
+            // add to in-memory list
+            print("here")
+            if NewsCollection.shared.favoriteList.contains(news.webUrl) {
+                let index = NewsCollection.shared.favoriteList.firstIndex(of: news.webUrl)
+                NewsCollection.shared.favoriteList.remove(at: index!)
+            }
         }
+        
         // reload collection view
         collectionView.reloadItems(at: [TappedCellIndex!])
     }
@@ -96,7 +107,7 @@ extension categoriesListCell: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryNewsCell", for: indexPath) as! categoryNewsCell
        
         // get news
-        let news = NewsCollection.shared.categoryNews[category]![indexPath.row] as! News
+        var news = NewsCollection.shared.categoryNews[category]![indexPath.row] as! News
         
         // set initial values
         cell.title.text = news.title
@@ -125,6 +136,11 @@ extension categoriesListCell: UICollectionViewDataSource, UICollectionViewDelega
             }
         }
         
+        news.isFavorite = NewsCollection.shared.favoriteList.contains(news.webUrl) ? true : false
+        
+        NewsCollection.shared.categoryNews[category]!.removeObject(at: indexPath.row)
+        NewsCollection.shared.categoryNews[category]!.insert(news, at: indexPath.row)
+
         // set button color
         cell.favoriteButton.tintColor = news.isFavorite ? self.link.view.tintColor : UIColor.lightGray
         

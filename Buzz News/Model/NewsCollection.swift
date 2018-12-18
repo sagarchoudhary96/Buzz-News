@@ -17,6 +17,9 @@ class NewsCollection {
     // categories news
     var categoryNews = [String:NSMutableArray]()
     
+    // list to store favoriteURL to keep data consistent
+    var favoriteList = [String]()
+    
     // singleton shared instance
     static let shared = NewsCollection()
 }
