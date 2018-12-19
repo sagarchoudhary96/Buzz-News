@@ -75,7 +75,6 @@ class LatestNewsTableViewController: UITableViewController {
         
         // mark favorite
         if (!news.isFavorite) {
-            print("favorite")
             let data = [Constants.GuardianResponseKeys.Title: news.title as String,
                         Constants.GuardianResponseKeys.WebUrl: news.webUrl as String,
                         Constants.GuardianResponseKeys.Thumbnail: news.thumbnailUrl ?? ""]
