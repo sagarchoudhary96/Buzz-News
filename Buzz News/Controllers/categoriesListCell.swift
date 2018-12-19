@@ -84,8 +84,7 @@ class categoriesListCell: UITableViewCell {
             // add to the firebase database
             FirebaseClient.shared.addToFirebase(userId: userId, data: data)
         } else {
-            // add to in-memory list
-            print("here")
+            // remove from in-memory list
             if NewsCollection.shared.favoriteList.contains(news.webUrl) {
                 let index = NewsCollection.shared.favoriteList.firstIndex(of: news.webUrl)
                 NewsCollection.shared.favoriteList.remove(at: index!)

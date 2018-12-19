@@ -84,6 +84,12 @@ class FavoriteNewsTableViewController: UITableViewController {
         if (editingStyle == .delete) {
             let newsSnapshot: DataSnapshot = newsList[indexPath.row]
             FirebaseClient.shared.removeFromFirebase(userId: userID!, key: newsSnapshot.key)
+            let news = newsSnapshot.value as! [String: String]
+            let url = news[Constants.GuardianResponseKeys.WebUrl]
+            if NewsCollection.shared.favoriteList.contains(url!) {
+                let index = NewsCollection.shared.favoriteList.firstIndex(of: url!)
+                NewsCollection.shared.favoriteList.remove(at: index!)
+            }
             self.newsList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
