@@ -1,6 +1,6 @@
 # Buz News
 
-An iPhone that shows the latest news, news by different categories and allow user to add news to favorites and access them later.
+An iPhone app that shows the latest news, news by different categories and allow user to add news to favorites and access them later.
 
 ## Requirements
 
